@@ -1,8 +1,8 @@
 
 //global variables
 // var gateway = `ws://192.168.1.254/ws`;
-var gateway = `ws://192.168.0.88/ws`;
-var loadcard = 0;
+var gateway = `ws://192.168.1.254/ws`;
+var loadcard = 0  ;
 var loading = 0;
 var websocket;
 var IsConnect;
@@ -51,33 +51,39 @@ var onUpdate = 0;
 var jsonSlave = "";
 var loadDone = false;
 var loadproduct = 0;
+var valueOD2000;
+var valueMPB10L = [];
+var valueWTM10L;
+var loadcardOD2000 = 0;
+var loadcard_WTM10L = 0;
+var loadcard_MPB10 = 0;
 const intervalId = setInterval(intervalHandle, 1000);
 function intervalHandle() {
-  // var json_output;
-  // if (IsConnect == true) {
-  //   json_output = "{'Command':'toggleLed'}";
-  //   console.log(json_output);
-  //   websocket.send(json_output);
+// var json_output;
+// if (IsConnect == true) {
+//   json_output = "{'Command':'toggleLed'}";
+//   console.log(json_output);
+//   websocket.send(json_output);
 
-  //   document.getElementById('input1').innerHTML = io_array[0];
-  //   document.getElementById('input2').innerHTML = io_array[1];
-  //   document.getElementById('input3').innerHTML = io_array[2];
-  //   document.getElementById('input4').innerHTML = io_array[3];
-  //   document.getElementById('output1').innerHTML = io_array[4];
-  //   document.getElementById('output2').innerHTML = io_array[5];
-  //   document.getElementById('output3').innerHTML = io_array[6];
-  //   document.getElementById('output4').innerHTML = io_array[7];
+//   document.getElementById('input1').innerHTML = io_array[0];
+//   document.getElementById('input2').innerHTML = io_array[1];
+//   document.getElementById('input3').innerHTML = io_array[2];
+//   document.getElementById('input4').innerHTML = io_array[3];
+//   document.getElementById('output1').innerHTML = io_array[4];
+//   document.getElementById('output2').innerHTML = io_array[5];
+//   document.getElementById('output3').innerHTML = io_array[6];
+//   document.getElementById('output4').innerHTML = io_array[7];
 
-  // var jsonOD2000 = "{\"OD2000\":{\"value\":65.21464539}}";
-  // var jsonparseOD2000 = JSON.parse(jsonOD2000);
-  // gencard_ODOD2000(jsonparseOD2000.OD2000.value);
-  // var jsonMPB10 = "{\"MPB10\":{\"value\":[33,0.196717024,0.141381785,0.13805677]}}";
-  // var jsonparseMPB10 = JSON.parse(jsonMPB10);
-  // gencard_MPB10(jsonparseMPB10.MPB10.value);
-
-  // var jsonWTM10L = "{\"WTM10L\":{\"value\":183}}";
-  // var jsonparseWTM10L = JSON.parse(jsonWTM10L);
-  // gencard_WTM10L(jsonparseWTM10L.WTM10L.value);
+  var jsonOD2000 = "{\"OD2000\":{\"value\":65.21464539}}";
+  var jsonparseOD2000 = JSON.parse(jsonOD2000);
+  gencard_ODOD2000(jsonparseOD2000.OD2000.value);
+  var jsonMPB10 = "{\"MPB10\":{\"value\":[33.25,0.196717024,0.141381785,0.13805677]}}";
+  var jsonparseMPB10 = JSON.parse(jsonMPB10);
+  gencard_MPB10(jsonparseMPB10.MPB10.value);
+  
+  var jsonWTM10L = "{\"WTM10L\":{\"value\":183}}";
+  var jsonparseWTM10L = JSON.parse(jsonWTM10L);
+  gencard_WTM10L(jsonparseWTM10L.WTM10L.value);
 }
 const selectwifimode = document.getElementById("staticip");
 // select mode wifi
@@ -122,96 +128,94 @@ function onClose(event) {
 function onMessage(event) {
   var state;
   try {
-    var message = JSON.parse(event.data);
-    // console.log(message);
-    // console.log('Message received: ' + event.data);
-    if (message.Command == "toggleLed") {
-      if (message.Data == "0")
-        state = "ON";
-      else state = "OFF";
-      console.log(state);
-      document.getElementById('state').innerHTML = state;
-    }
-    else if (message.Command == "getIO") { }
+  var message = JSON.parse(event.data);
+  // console.log(message);
+  // console.log('Message received: ' + event.data);
+  if (message.Command == "toggleLed") {
+    if (message.Data == "0")
+      state = "ON";
+    else state = "OFF";
+    console.log(state);
+    document.getElementById('state').innerHTML = state;
+  } 
+  else if (message.Command == "getIO") {}
 
-    else if (message.Command == "settingWifi") {
-      alert("Setting Done");
-    }
-    else if (message.Command == "settingModbus") {
-      alert("Completed setting!!!");
-    }
-    else if (message.Command == "ListFile") {
-      tablefile(event.data);
-    }
+  else if (message.Command == "settingWifi") {
+    alert("Setting Done");
+  }
+  else if (message.Command == "settingModbus") {
+    alert("Completed setting!!!");
+  }
+  else if (message.Command == "ListFile") {
+    tablefile(event.data);
+  }
 
-    else if (message.Command == "TableID") {
-      jsontableID = document.getElementById("datatableid").value = event.data;
-      // console.log(jsontableID);
-      firstload = 1;
-      loading = 0;
-      loadTable(jsontableID);
-
-      changeRegOptions(jsontableID);
-    }
-    else if (message.Command == "tableData") {
-      console.log(event.data);
-      if (loading == 1) {
-        jsontableData = event.data;
-        loaddata(jsontableData);
-        addvaluecard(jsontableData);
-      }
-      if (daloadvcard) updatevalue();
-      if (loadcard == 1) {
-        buildCardJson();
-        loadcard = 0;
-
-      }
-    }
-    else if (message.Filename == "Application") {
-      document.getElementById("jsonApp").value = event.data;
-      // console.log(event.data);
-      loadproduct = 1;
-
-    }
-    else if (message.Filename == "TableID") {
-      jsontableID = document.getElementById("datatableid").value = event.data;
-      // console.log(jsontableID);
-      firstload = 1;
-      loading = 0;
-      loadTable(jsontableID);
-      loadcard = 1;
-      changeRegOptions(jsontableID);
-    }
-    else if (message.Filename == "DataProduct") {
-      // console.log(event.data);
-      document.getElementById("dataProduct").value = preferenceslist = event.data;
-    }
-    else if (message.Filename == "mbSlave" && loadDone == false) {
-      // console.log(event.data);
-      jsonSlave = document.getElementById("datatabledata").value = event.data;
-      loadBoardSlave(event.data);
-      genTable();
-      loadDone = true;
-    }
-    var key = Object.keys(message);
-    if (key == "OD2000") {
-      gencard_ODOD2000(message);
-    }
-    if (key == "WTM10L") {
-      gencard_WTM10L(message);
-    }
-    if (key == "MPB10") {
-      gencard_MPB10(message);
-    }
-    if (key == "CSS") {
-      gencard_CSS(message);
-    }
-    if (key == "PBS") {
-      gencard_PBS(message);
-    }
-  } catch (e) {
-    console.log(e);
+  else if (message.Command == "TableID") {
+    jsontableID = document.getElementById("datatableid").value = event.data;
+    // console.log(jsontableID);
+    firstload = 1;
+    loading = 0;
+    loadTable(jsontableID);
+    
+    changeRegOptions(jsontableID);
+  }
+  else if (message.Command == "tableData") { 
     console.log(event.data);
+    if (loading == 1) {
+      jsontableData = event.data;
+      loaddata(jsontableData);
+      addvaluecard(jsontableData);
+    }
+    if(daloadvcard) updatevalue();
+    if(loadcard == 1) {
+      buildCardJson();
+      loadcard = 0; 
+      
+    }
+  }
+  else if(message.Filename == "Application"){
+    document.getElementById("jsonApp").value = event.data;
+    // console.log(event.data);
+    loadproduct = 1;
+    
+  }
+  else if(message.Filename == "TableID"){
+    jsontableID = document.getElementById("datatableid").value = event.data;
+    // console.log(jsontableID);
+    firstload = 1;
+    loading = 0;
+    loadTable(jsontableID);
+    loadcard = 1;
+    changeRegOptions(jsontableID);
+  }
+  else if(message.Filename == "DataProduct"){
+    // console.log(event.data);
+    document.getElementById("dataProduct").value =preferenceslist = event.data;
+  }
+  else if (message.Filename == "mbSlave" && loadDone == false) {
+    // console.log(event.data);
+    jsonSlave = document.getElementById("datatabledata").value = event.data;
+    loadBoardSlave(event.data);
+    genTable();
+    loadDone = true;
+  }
+  if(message.OD2000 != null){
+    valueOD2000 = message.OD2000.value;
+    console.log(message.OD2000.value);
+    // gencard_ODOD2000(valueOD2000);
+  }
+  if(message.WTM10L != null){
+    valueWTM10L = message.WTM10L.value;
+    console.log(message.WTM10L.value);
+    // gencard_WTM10L(valueWTM10L);
+  }
+  if(message.MPB10 != null){
+    valueMPB10L = message.MPB10.value;
+    console.log(message.MPB10.value);
+    // gencard_MPB10(valueMPB10L);
+  }
+  }catch(e){
+    console.log(e);
   }
 }
 function onLoad(event) {
@@ -262,8 +266,8 @@ function initButton() {
   document.getElementById('settingBtnList').addEventListener('click', openSettingModalList);
   document.getElementById('settingBtnSetting').addEventListener('click', openSettingModalSetting);
   document.getElementById('btntable').addEventListener('click', TabTableData);
-
-
+  
+  
   document.getElementById('bntsavecard').addEventListener('click', saveCard);
   document.getElementById('bntsaveproduct').addEventListener('click', savedataproduct);
   document.getElementById('bntsavetableid').addEventListener('click', saveTableID);
@@ -297,35 +301,35 @@ function TestTableData() {
   jsontableData = document.getElementById("datatabledata").value;
   loaddata(jsontableData);
   addvaluecard(jsontableData);
-  if (daloadvcard) updatevalue();
+  if(daloadvcard) updatevalue();
 }
 // load json
-function loadtableid() {
+function loadtableid(){
   firstload = 1;
   loading = 0;
   LoadJson("TableID");
 }
-function loaddataproduct() {
+function loaddataproduct(){
   LoadJson("DataProduct");
 }
-function loadtabledata() {
+function loadtabledata(){
   LoadJson("mbSlave");
 }
-function loadCard() {
+function loadCard(){
   LoadJson("Application");
 }
 // save json
-function saveCard() {
+function saveCard(){
   SaveJson(document.getElementById('jsonApp').value, "Application");
 }
-function saveTableID() {
-  SaveJson(document.getElementById('datatableid').value, "tableID");
+function saveTableID(){
+  SaveJson(document.getElementById('datatableid').value,"tableID");
 }
-function savedataproduct() {
-  SaveJson(document.getElementById('dataProduct').value, "dataProduct");
+function savedataproduct(){
+  SaveJson(document.getElementById('dataProduct').value,"dataProduct");
 }
-function saveTableData() {
-  SaveJson(document.getElementById('datatabledata').value, "mbSlave");
+function saveTableData(){
+  SaveJson(document.getElementById('datatabledata').value,"mbSlave");
 }// save json
 
 //reload json 
@@ -360,7 +364,7 @@ function settingmodbus() {
   document.getElementById("tabHome").style.display = "none";
   document.getElementById("tabIO").style.display = "none";
   document.getElementById("tabtabledata").style.display = "none";
-
+  
   document.getElementById("btnModbus").style.display = "none";
   document.getElementById("btnHome").style.display = "block";
   document.getElementById("btnIo").style.display = "block";
@@ -459,7 +463,7 @@ function TabShowData() {
   document.getElementById("tabHome").style.display = "none";
   document.getElementById("tabIO").style.display = "none";
   document.getElementById("tabtabledata").style.display = "none";
-
+  
   document.getElementById("btnModbus").style.display = "block";
   document.getElementById("btnHome").style.display = "block";
   document.getElementById("btnIo").style.display = "block";

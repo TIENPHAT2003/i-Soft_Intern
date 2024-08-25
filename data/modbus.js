@@ -212,7 +212,7 @@ function initData(jsonValue) {
   document.getElementById('re' + (numSlave - 1)).innerHTML = re;
 }
 function loadBoardSlave(jsonValue) {
-  console.log(jsonValue);
+  // console.log(jsonValue);
   var keys = JSON.parse(jsonValue);
   numSlave = keys.Data.Slave.length;
   addSlaveCard();
@@ -256,7 +256,7 @@ function loadTable(jsonValue) {
 var secondload = 0;
 function genTable() {
   var card_table_html = "";
-  var stt = 1;
+  var stt = 0;
   var length;
   var rs;
   var re;
@@ -287,7 +287,7 @@ function genTable() {
       if (i % 2 == 1) {
         card_table_html += "</div><br>";
       }
-      stt = 1;
+      stt = 0;
     }
     document.getElementById("slaveTable").innerHTML = card_table_html;
     for (var m = 0; m < numSlave; m++) {
@@ -471,7 +471,6 @@ function float_to_word(float) {
 function int32ToFloat(int32) {
   let buffer = new ArrayBuffer(4);
   new DataView(buffer).setUint32(0, int32);
-  // new DataView(buffer).setInt32(1, int32);
   return new DataView(buffer).getFloat32(0);
 }
 
@@ -485,41 +484,9 @@ function floatToInt32(float) {
 function word_to_dword(wordArr) {
   return (wordArr[0] | (wordArr[1] << 16));
 }
-function byte_to_dword(byteArr) {
-  return (byteArr[3] | (byteArr[2] << 8) | (byteArr[1] << 16) | (byteArr[0] << 24));
-}
 
 function dword_to_word(dword) {
   wordArr[0] = dword & 0xFFFF;            // Byte thấp
   wordArr[1] = (dword >> 16);    // Byte cao
   return wordArr;
-}
-
-function byte_to_floatB(byte) {
-  var float = ((byte[3]) | (byte[2] <<8) | (byte[1] <<16) | (byte[0] <<24));
-  return int32ToFloat(float);
-}
-function byte_to_floatL(byte) {
-  var float = ((byte[0]) | (byte[1] <<8) | (byte[2] <<16) | (byte[3] <<24));
-  return int32ToFloat(float);
-}
-
-function float_to_byteB(float) {
-  var byteArr = [];
-  let combined = floatToInt32(float);
-  byteArr[3] |= combined & 0xFF;           
-  byteArr[2] |= (combined >> 8) & 0xFF;            
-  byteArr[1] |= (combined >> 16) & 0xFF;            
-  byteArr[0] |= (combined >> 24) & 0xFF;            
-  return byteArr;
-}
-
-function float_to_byteL(float) {
-  var byteArr = [];
-  let combined = floatToInt32(float);
-  byteArr[0] |= combined & 0xFF;           
-  byteArr[1] |= (combined >> 8) & 0xFF;            
-  byteArr[2] |= (combined >> 16) & 0xFF;            
-  byteArr[3] |= (combined >> 24) & 0xFF;            
-  return byteArr;
 }
