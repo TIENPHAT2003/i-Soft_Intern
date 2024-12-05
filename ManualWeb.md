@@ -159,7 +159,7 @@ Website được thiết kế nhằm mục đích tạo một giao diện cho ng
 
 Ban đầu khi vào website sẽ mặc định ở tài khoản `User` chỉ được phép theo dõi các thông số được tạo ra sẵn và thay đổi một vài thông số.
 
-Để có thể thao tác nhiều hơn cần đăng nhập vào tài khoản của `Amin` hoặc `Staff`. Để đăng nhập cần ấn vào biểu tượng
+Để có thể thao tác nhiều hơn cần đăng nhập vào tài khoản của `Admin` hoặc `Staff`. Để đăng nhập cần ấn vào biểu tượng
 <div style="text-align: center;">
 
 ![alt text](image/logologin.png)
@@ -403,8 +403,7 @@ Trong giao diện có thể xem và chỉnh sửa các thông số của chuỗi
 ![alt text](image/logoeditjson.png)
 </div>
 
-Sau đó màn hình sẽ xuất hiện giao diện gồm các `TextBox` để hiển thị các chuỗi JSON
-ping
+Sau đó màn hình sẽ xuất hiện giao diện gồm các `TextBox` để hiển thị các chuỗi JSON 
 <div style="text-align: center;">
 
 ![alt text](image/json1.png)

@@ -3,36 +3,6 @@ function openAddCard() {
     var modal = new bootstrap.Modal(document.getElementById('cardaddApp'));
     modal.show();
 }
-// Select type card
-// const selectcard = document.getElementById('selectcard');
-//     selectcard.addEventListener('change', function handleChange(event) {
-//         var chooseCard = document.getElementById("selectcard").value;
-//         if(chooseCard == "0"){
-//             document.getElementById("plc").style.display = "block"
-//             document.getElementById("od2000").style.display = "none";
-//             document.getElementById("wtmdistance").style.display = "none";
-//             document.getElementById("wtmxyz").style.display = "none";
-//         }
-//         if(chooseCard == "1"){
-//             document.getElementById("plc").style.display = "none"
-//             document.getElementById("od2000").style.display = "block";
-//             document.getElementById("wtmdistance").style.display = "none";
-//             document.getElementById("wtmxyz").style.display = "none";
-//         }
-//         if(chooseCard == "2"){
-//             document.getElementById("plc").style.display = "none"
-//             document.getElementById("od2000").style.display = "none";
-//             document.getElementById("wtmdistance").style.display = "block";
-//             document.getElementById("wtmxyz").style.display = "none";
-//         }
-//         if(chooseCard == "3"){
-//             document.getElementById("plc").style.display = "none"
-//             document.getElementById("od2000").style.display = "none";
-//             document.getElementById("wtmdistance").style.display = "none";
-//             document.getElementById("wtmxyz").style.display = "block";
-//         }
-        
-//     });
 //HTML card
 function AddCardBody() {
     html += "<div class='col-14 cardproduct'>\
@@ -276,5 +246,4 @@ function buildcard(jsoninput) {
     }
     daloadvcard = 1;
     updatevalue();
- 
 }

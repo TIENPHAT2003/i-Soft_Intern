@@ -6,7 +6,6 @@
 
 #include <FileSystem/FileSystem.h>
 #include <Communication/MB.h>
-#include <Sensor/SICK.h>
 #include <OnlineManage/OnlineManage.h>
 #include <OnlineManage/NPTTime.h>
 

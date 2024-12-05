@@ -7,7 +7,6 @@
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <DNSServer.h>
-#include <MQTT.h>
 
 #define soft_ap_ssid "ESP32-AP-Connect"
 #define soft_ap_password "12345678"

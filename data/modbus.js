@@ -426,7 +426,7 @@ function word_to_char_string(wordArr) {
   var charArr = new Array(40).fill(0);
   for (let i = 0; i < 20; i++) {
     let word = wordArr[i];
-    charArr[2 * i] = String.fromCharCode(word & 0xFF);         // Byte thấp
+    charArr[2 * i] = String.fromCharCode(word & 0xFF);            // Byte thấp
     charArr[2 * i + 1] = String.fromCharCode((word >> 8) & 0xFF); // Byte cao
   }
   return charArr;
@@ -445,9 +445,9 @@ function char_string_to_word(str) {
   let highByte;
   for (let i = 0; i < 20; i++) {
     try {
-      lowByte = charArr[2 * i].charCodeAt(0);  // Byte thấp
-      highByte = charArr[2 * i + 1].charCodeAt(0); // Byte cao
-      wordArr[i] = (highByte << 8) | lowByte; // Ghép nối hai byte thành một từ 16 bit
+      lowByte = charArr[2 * i].charCodeAt(0);       // Byte thấp
+      highByte = charArr[2 * i + 1].charCodeAt(0);  // Byte cao
+      wordArr[i] = (highByte << 8) | lowByte;       // Ghép nối hai byte thành một từ 16 bit
     }
     catch (e) { break; }
   }
@@ -486,7 +486,7 @@ function word_to_dword(wordArr) {
 }
 
 function dword_to_word(dword) {
-  wordArr[0] = dword & 0xFFFF;            // Byte thấp
+  wordArr[0] = dword & 0xFFFF;   // Byte thấp
   wordArr[1] = (dword >> 16);    // Byte cao
   return wordArr;
 }

@@ -75,14 +75,6 @@ function changeTab(id) {
     $("#" + id).addClass('nav-link py-3 active')
     $("#tab_" + id).removeClass('hidden_forced')
     updateUI($("#tab_" + id).height());
-    // if(id == 'application')loadData()//hardcode
-
-    // if (id == 'wifi') build_HTML_lookline_list('wifi', 'wifi_list_data')
-    // if (id == 'ethernet') build_HTML_lookline_list('tcp', 'ethernet_list_data')
-    // if (id == 'modbus') build_HTML_lookline_list('modbus', 'modbus_list_data')
-    // if (id == 'application') build_HTML_lookline_list('application', 'application_list_data')
-    // if (id == 'rf') build_HTML_lookline_list('rf', 'rf_list_data')
-    // application_list_data
 }
   function PassSave(id) {
     // try{

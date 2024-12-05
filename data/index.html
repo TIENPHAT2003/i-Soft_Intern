@@ -14222,7 +14222,12 @@
       height: 120px;
       animation: spin 2s linear infinite;
     }
-
+    #addcard {
+      display: flex;
+      flex-wrap: wrap; /* Giúp các thẻ tự động chuyển sang hàng mới khi không đủ chỗ */
+      justify-content: center; /* Căn giữa các thẻ trên hàng ngang */
+      gap: 15px; /* Khoảng cách giữa các thẻ */
+  }
     @keyframes spin {
       0% {
         transform: rotate(0deg);
@@ -14442,7 +14447,7 @@
   </svg>
   <div class="topnav">
     <Center>
-      <h1>IoT TEAM</h1>
+      <h1>ĐỒ ÁN PLC</h1>
     </Center>
   </div>
 
@@ -15339,7 +15344,6 @@
   <script src="./GenCard.js"></script>
   <script src="./DataProduct.js"></script>
   <script src="./Log.js"></script>
-  <script src="./SICK.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 
