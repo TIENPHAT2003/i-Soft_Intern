@@ -526,7 +526,7 @@
     [type=reset],
     [type=submit],
     button {
-      -webkit-appearance: button
+      -webkit-appearance: button;
     }
 
     [type=button]:not(:disabled),
@@ -14147,7 +14147,6 @@
       padding-bottom: 10px;
       padding-left: 30px;
       padding-right: 30px;
-      /* box-shadow: 2px 2px 12px 1px rgba(140, 140, 140, .5); */
     }
 
     .cardproduct {
@@ -14933,36 +14932,37 @@
         <div>
           <div id="SettingsPage">
             <div class="navbar navbar-expand-sm " style="background-color: #343a40;">
-              <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;wifi&#39;)">
+              <button type="button" class="btn btn-lg" onclick="SelectTab(event, 'wifi')">
                 <svg class="bi" width="24" height="24">
                   <use xlink:href="#icon-wifi"></use>
                 </svg>
               </button>
-              <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;ethernet&#39;)">
+              <button type="button" class="btn btn-lg" onclick="SelectTab(event, 'ethernet')">
                 <svg class="bi" width="24" height="24">
                   <use xlink:href="#icon-ethernet"></use>
                 </svg>
               </button>
-              <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;mqtt&#39;)">
+              <button type="button" class="btn btn-lg" onclick="SelectTab(event, 'mqtt')">
                 <svg class="bi" width="24" height="24">
                   <use xlink:href="#icon-mqtt"></use>
                 </svg>
               </button>
-              <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;rfnet&#39;)">
+              <button type="button" class="btn btn-lg" onclick="SelectTab(event, 'rfnet')">
                 <svg class="bi" width="24" height="24">
                   <use xlink:href="#icon-rfnet"></use>
                 </svg>
               </button>
-              <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;io&#39;)">
+              <button type="button" class="btn btn-lg" onclick="SelectTab(event, 'io')">
                 <svg class="bi" width="24" height="24">
                   <use xlink:href="#icon-io"></use>
                 </svg>
               </button>
-              <button type="button" class="btn btn-lg" onclick="SelectTab(event, &#39;gyro&#39;)">
+              <button type="button" class="btn btn-lg" onclick="SelectTab(event, 'gyro')">
                 <svg class="bi" width="24" height="24">
                   <use xlink:href="#icon-gyro"></use>
                 </svg>
               </button>
+              
             </div>
             <form>
               <div id="wifi" class="tabcontent" style="display: block;">
