@@ -455,7 +455,7 @@ function ShowModalCardSet(closefunc) {
     var UpdateDataApp = JSON.parse(jsonApp);
     var arrayData = [AppID, poss, id_card, nodeID, netID, namecard, value1, value2, value3, value4, value5, value6, value7] = UpdateDataApp.Data[id].app.split(",");
     saveSettings(id,0,1);
-    setTimeout(function () { saveSettings(id,0,2); }, 500);
+    setTimeout(function () { saveSettings(id,0,2); }, 1500);
   }
   //bỏ nút save, nhập vào thì lưu
   // Gán sự kiện onblur cho từng trường input trong modal

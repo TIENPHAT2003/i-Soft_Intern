@@ -8,7 +8,7 @@ AsyncWebSocket ws("/ws");
 
 Website mywebsite;
 
-const IPAddress local_IP(192, 168, 1, 254);
+const IPAddress local_IP(192, 168, 1, 61);
 const IPAddress gateway(192, 168, 0, 1);
 const IPAddress subnet(255, 255, 0, 0);
 
@@ -56,8 +56,8 @@ void OnlineManage::Get_AP_IP()
 }
 void OnlineManage::AP_STA_Mode()
 {
-    String ssid = "I-Soft";
-    String pwk = "i-soft@2023";
+    String ssid = "OXY 24H 5G";
+    String pwk = "oxy24hcoffee";
     WiFi.mode(WIFI_AP_STA);
     WiFi.softAP(soft_ap_ssid, soft_ap_password);
     WiFi.begin(ssid, pwk);
@@ -258,6 +258,7 @@ void editModbusData()
         Serial.println("Value " + String(i) + " : " + String(value[i]));
     }
     mbParam.loadTable = false;
+
     if ((modbusRTU.master == 1) && (mbParam.slave[node].ID.length() < 5))
     {
         while (modbusRTU.write_Multiple_Data(mbParam.slave[node].ID.toInt(),
@@ -265,6 +266,7 @@ void editModbusData()
                                              address,
                                              length) != true)
             ;
+        mbParam.loadTable = true;
     }
     else if ((modbusTCP.client == 1) && (mbParam.slave[node].ID.length() > 5))
     {
@@ -307,6 +309,7 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len)
         else if (command == "editModbusData") // Request change data from web server
         {
             editModbusData();
+            vTaskDelay(5 / portTICK_PERIOD_MS);
         }
         else if (command == "SaveFile") // Request Save file
         {

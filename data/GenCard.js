@@ -9,41 +9,41 @@ function AddCardBody() {
         <Center>\
         <div class='statecard' id=\"State0_" + id_card + "\" style='position: relative; right: 20px; text-align: right'>state:Stop</div>\
             <h2><span id=\"namecard"+ id_card + "\"></span> </h2>\
-            <p class=\"statecard\">ID Card: "+ id_card + "</p>\
-            <div class=\"container overflow-hidden text-center\">\
+            <p class=\"statecard\">ID: "+ id_card + "</p>\
+            <div class=\"container overflow-hidden\">\
             <div class=\"row gy-3\">\
-                <div class=\"col-5\">\
-                <div class=\"statecard\">Plan:</div>\
+                <div class=\"col-6\">\
+                <div class=\"statetextcard\">Product Count:</div>\
                 </div>\
                 <div class=\"col-6\">\
                 <div class=\"statecard\" id=\"card"+ id_card + "value1\"></div>\
                 </div>\
-                <div class=\"col-5\">\
-                <div class=\"statecard\">Result:</div>\
+                <div class=\"col-6\">\
+                <div class=\"statetextcard\">Result:</div>\
                 </div>\
                 <div class=\"col-6\">\
                 <div class=\"statecard\" id=\"card"+ id_card + "value2\"></div>\
                 </div>\
-                <div class=\"col-5\">\
-                <div class=\"statecard\">Plan set:</div>\
+                <div class=\"col-6\">\
+                <div class=\"statetextcard\">Product Set:</div>\
                 </div>\
                 <div class=\"col-6\">\
                 <div class=\"statecard\" id=\"card"+ id_card + "value3\"></div>\
                 </div>\
-                <div class=\"col-5\">\
-                <div class=\"statecard\">Name Product:</div>\
+                <div class=\"col-6\">\
+                <div class=\"statetextcard\">Product Name:</div>\
                 </div>\
                 <div class=\"col-6\">\
                 <div class=\"statecard\" id=\"card"+ id_card + "value4\"></div>\
                 </div>\
-                <div class=\"col-5\">\
-                <div class=\"statecard\">Cycle Time:</div>\
+                <div class=\"col-6\">\
+                <div class=\"statetextcard\">Cycle Time:</div>\
                 </div>\
                 <div class=\"col-6\">\
                 <div class=\"statecard\" id=\"card"+ id_card + "value5\"></div>\
                 </div>\
-                <div class=\"col-5\">\
-                <div class=\"statecard\">Total Plan:</div>\
+                <div class=\"col-6\">\
+                <div class=\"statetextcard\">Total Product:</div>\
                 </div>\
                 <div class=\"col-6\">\
                 <div class=\"statecard\" id=\"card"+ id_card + "value6\"></div>\

@@ -212,7 +212,6 @@ function initData(jsonValue) {
   document.getElementById('re' + (numSlave - 1)).innerHTML = re;
 }
 function loadBoardSlave(jsonValue) {
-  // console.log(jsonValue);
   var keys = JSON.parse(jsonValue);
   numSlave = keys.Data.Slave.length;
   addSlaveCard();
@@ -232,27 +231,77 @@ function clearSlave() {
   websocket.send(json_send);
   document.getElementById("slavecard").innerHTML = ""
 }
+// Hàm load bảng từ JSON
 function loadTable(jsonValue) {
   var key = JSON.parse(jsonValue);
   for (var i = 0; i < numSlave; i++) {
-    var slave = key.Data[i].ID;
-    document.getElementById("slave" + i).innerHTML = slave;
-    var rs = document.getElementById('rs' + i).innerText;
-    var re = document.getElementById('re' + i).innerText;
-    var length = re - rs + 1;
-    for (var j = 0; j < length; j++) {
-      if (key.Data[i].Data[j] == null) break;
-      var type = "<select id=\"Type" + i + "_" + j + "\" onchange=\"editModbusDataType('" + i + '_' + j + "')\"><option value=0 %0%>WORD</option><option value=1 %1%>COIL</option><option value=2 %2%>DWORD</option><option value=3 %3%>FLOAT</option><option value=4 %4%>CHAR</option></select>";
-      if (key.Data[i].Data[j] == "0") { type = type.replace("%0%", "selected"); type = type.replace("%1%", ""); type = type.replace("%2%", ""); type = type.replace("%3%", ""); type = type.replace("%4%", ""); }
-      if (key.Data[i].Data[j] == "1") { type = type.replace("%1%", "selected"); type = type.replace("%0%", ""); type = type.replace("%2%", ""); type = type.replace("%3%", ""); type = type.replace("%4%", ""); }
-      if (key.Data[i].Data[j] == "2") { type = type.replace("%2%", "selected"); type = type.replace("%1%", ""); type = type.replace("%0%", ""); type = type.replace("%3%", ""); type = type.replace("%4%", ""); }
-      if (key.Data[i].Data[j] == "3") { type = type.replace("%3%", "selected"); type = type.replace("%1%", ""); type = type.replace("%2%", ""); type = type.replace("%0%", ""); type = type.replace("%4%", ""); }
-      if (key.Data[i].Data[j] == "4") { type = type.replace("%4%", "selected"); type = type.replace("%1%", ""); type = type.replace("%2%", ""); type = type.replace("%0%", ""); type = type.replace("%3%", ""); }
-      document.getElementById("SelectType" + i + "_" + j).innerHTML = type;
-    }
+      // Lấy ID của slave và hiển thị
+      var slave = key.Data[i].ID;
+      document.getElementById("slave" + i).innerHTML = slave;
+
+      // Lấy giá trị start (rs) và end (re)
+      var rs = document.getElementById('rs' + i).innerText;
+      var re = document.getElementById('re' + i).innerText;
+      var length = re - rs + 1;
+
+      // Tạo bảng dữ liệu
+      for (var j = 0; j < length; j++) {
+          if (key.Data[i].Data[j] == null) break;
+          var type = `
+              <select id="Type${i}_${j}" onchange="generateJsonFromTable()">
+                  <option value=0 ${key.Data[i].Data[j] == "0" ? "selected" : ""}>WORD</option>
+                  <option value=1 ${key.Data[i].Data[j] == "1" ? "selected" : ""}>COIL</option>
+                  <option value=2 ${key.Data[i].Data[j] == "2" ? "selected" : ""}>DWORD</option>
+                  <option value=3 ${key.Data[i].Data[j] == "3" ? "selected" : ""}>FLOAT</option>
+                  <option value=4 ${key.Data[i].Data[j] == "4" ? "selected" : ""}>CHAR</option>
+              </select>
+          `;
+          document.getElementById("SelectType" + i + "_" + j).innerHTML = type;
+      }
   }
-  loading = 1;
+  loading = 1; // Đánh dấu bảng đã được tải xong
 }
+
+// Hàm tạo chuỗi JSON từ bảng
+function generateJsonFromTable() {
+  let result = {
+      Filename: "TableID",
+      Data: []
+  };
+
+  for (let i = 0; i < numSlave; i++) {
+      // Lấy ID của slave
+      let slaveID = document.getElementById("slave" + i).innerHTML;
+
+      // Lấy giá trị rs và re để xác định độ dài
+      let rs = parseInt(document.getElementById('rs' + i).innerText);
+      let re = parseInt(document.getElementById('re' + i).innerText);
+      let length = re - rs + 1;
+
+      // Tạo mảng Data cho slave
+      let data = [];
+      for (let j = 0; j < length; j++) {
+          // Kiểm tra nếu element tồn tại
+          let typeElement = document.getElementById("Type" + i + "_" + j);
+          if (!typeElement) break;
+
+          // Lấy giá trị của `select` và thêm vào mảng
+          data.push(typeElement.value);
+      }
+
+      // Thêm slave vào mảng Data của kết quả
+      result.Data.push({
+          ID: slaveID,
+          Data: data
+      });
+  }
+
+  // Chuyển đổi đối tượng JSON thành chuỗi
+  let jsonString = JSON.stringify(result, null, 4);
+  console.log(jsonString); // In ra chuỗi JSON mỗi khi thay đổi
+  document.getElementById("datatableid").value = jsonString;
+}
+
 var secondload = 0;
 function genTable() {
   var card_table_html = "";
@@ -355,6 +404,7 @@ function editModbusDataType(a) {
   var index = a.split("_");
   var id = index[0];
   var address = index[1];
+  
   var slaveAddress = document.getElementById("address" + id + "_" + address).innerHTML;
   var type = document.getElementById("Type" + id + "_" + address).value;
   var key = JSON.parse(jsontableID);

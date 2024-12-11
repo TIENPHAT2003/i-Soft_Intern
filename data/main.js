@@ -1,6 +1,7 @@
 
 //global variables
-var gateway = `ws://192.168.4.1/ws`;
+// var gateway = `ws://192.168.4.1/ws`;
+var gateway = `ws://192.168.13.132/ws`;
 var loadcard = 0  ;
 var loading = 0;
 var websocket;
@@ -10,7 +11,6 @@ var numSlaveTCP = 0;
 var numSlaveRTU = 0;
 var io_array = [1, 1, 1, 1, 1, 1, 1, 1];
 var daloadvcard = 0;
-var io_obj = "{\"Command\": \"getIO\",\"id\": \"1\",\"Data\":[]}";
 var jsonAppInput = "";
 var jsontableID = "";
 var jsontableData = "";
@@ -137,8 +137,9 @@ function onMessage(event) {
     }
     else if (message.Command == "tableData") { 
       console.log(event.data);
+      jsontableData = event.data;
+
       if (loading == 1) {
-        jsontableData = event.data;
         loaddata(jsontableData);
         addvaluecard(jsontableData);
       }
@@ -280,7 +281,7 @@ function saveCard(){
   SaveJson(document.getElementById('jsonApp').value, "Application");
 }
 function saveTableID(){
-  SaveJson(document.getElementById('datatableid').value,"tableID");
+  SaveJson(document.getElementById('datatableid').value,"TableID");
 }
 function savedataproduct(){
   SaveJson(document.getElementById('dataProduct').value,"dataProduct");

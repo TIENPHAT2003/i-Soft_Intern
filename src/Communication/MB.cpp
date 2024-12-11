@@ -50,9 +50,6 @@ bool cb(Modbus::ResultCode event, uint16_t transactionId, void *data) // Callbac
 {
     if (event != Modbus::EX_SUCCESS)
     {
-        // Serial.print("Request result: 0x");
-        // Serial.println(event, HEX);
-        // Serial.print("No Connection");
         modbusRTU.isConnect = false;
     }
     else
