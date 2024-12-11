@@ -14757,9 +14757,6 @@
       <button id="bntsaveproduct" class="buttoncuatao_output">Save Product</button>
       <button id="bnttestproduct" class="buttoncuatao_output">Test Product</button>
     </div><br>
-    <!-- <div id="waitData" class="loader"></div> -->
-
-
   </div>
 
   <!-- Tab Log User -->
@@ -14803,18 +14800,6 @@
         </div>
         <div style="padding: 10px;" class="state">
           <div>Name: <input type="text" class="state" id="input_namecard" size="15" placeholder="Name Card"></div><br>
-          <!-- <div class="row gx-2">
-            <div class="col-8 ">Select Card: </div>
-            <div class="col">
-              <div><select id="selectcard" class="state">
-                <option value="">--Select Card--</option>
-                <option value="0">PLC OEE</option>
-                <option value="1">OD2000</option>
-                <option value="2">WTM10L</option>
-                <option value="3">MPB10</option>
-              </select></div>
-            </div>
-          </div><br> -->
           <div class="row gx-2">
             <div class="col-8 ">Select NodeID: </div>
             <div class="col">
@@ -14824,7 +14809,7 @@
         <!-- PLC Card -->
         <div id="plc" style="display:block;">
           <div class="row gx-2">
-            <div class="col">Plan: </div>
+            <div class="col-8">Product Count: </div>
             <div class="col"><span id="value1" class="state"> Value </span></div>
             <div class="col">
               <div><select id="selectvalue1" class="state"></select></div>
@@ -14832,90 +14817,42 @@
           </div><br>
 
           <div class="row gx-2">
-            <div class="col">Result: </div>
+            <div class="col-8">Result: </div>
             <div class="col"><span id="value2" class="state"> Value </span></div>
             <div class="col"><select id="selectvalue2" class="state"></select></div>
           </div><br>
 
           <div class="row gx-2">
-            <div class="col">PlanSet / ResultSet: </div>
+            <div class="col-8">Product Set: </div>
             <div class="col"><span id="value3" class="state"> Value </span></div>
             <div class="col"><select id="selectvalue3" class="state"></select></div>
           </div><br>
 
           <div class="row gx-2">
-            <div class="col">Name Product: </div>
+            <div class="col-8">Product Name: </div>
             <div class="col"><span id="value4" class="state"> Value </span></div>
             <div class="col"><select id="selectvalue4" class="state"></select></div>
           </div><br>
 
           <div class="row gx-2">
-            <div class="col">Cycle Time: </div>
+            <div class="col-8">Cycle Time: </div>
             <div class="col"><span id="value5" class="state"> Value </span></div>
             <div class="col"><select id="selectvalue5" class="state"></select></div>
           </div><br>
 
           <div class="row gx-2">
-            <div class="col">Total Plan: </div>
+            <div class="col-8">Total Product: </div>
             <div class="col"><span id="value6" class="state"> Value </span></div>
             <div class="col"><select id="selectvalue6" class="state"></select></div>
           </div><br>
 
           <div class="row gx-2">
-            <div class="col">Run/Stop: </div>
+            <div class="col-8">Run/Stop: </div>
             <div class="col"><span id="value7" class="state"> Value </span></div>
             <div class="col"><select id="selectvalue7" class="state"></select></div>
           </div><br>
         </div>
-        <!-- OD2000 -->
-        <div id="od2000" style="display:none;">
-          <div class="row gx-2">
-            <!-- <div class="col">Distance: </div>
-            <div class="col"><span id="value1" class="state"> Value </span></div>
-            <div class="col">
-              <div><select id="selectvalue1" class="state"></select></div>
-            </div> -->
-          </div><br>
-        </div>
-        <!-- WTM Distance -->
-        <div id="wtmdistance" style="display:none;">
-          <div class="row gx-2">
-            <!-- <div class="col">Distance: </div>
-            <div class="col"><span id="value1" class="state"> Value </span></div>
-            <div class="col">
-              <div><select id="selectvalue1" class="state"></select></div>
-            </div> -->
-          </div><br>
-        </div>
-        <!-- WTM XYZ -->
-        <div id="wtmxyz" style="display:none;">
-          <!-- <div class="row gx-2">
-            <div class="col">X: </div>
-            <div class="col"><span id="value1" class="state"> Value </span></div>
-            <div class="col">
-              <div><select id="selectvalue1" class="state"></select></div>
-            </div>
-          </div><br>
-
-          <div class="row gx-2">
-            <div class="col">Y: </div>
-            <div class="col"><span id="value2" class="state"> Value </span></div>
-            <div class="col"><select id="selectvalue2" class="state"></select></div>
-          </div><br>
-
-          <div class="row gx-2">
-            <div class="col">Z: </div>
-            <div class="col"><span id="value3" class="state"> Value </span></div>
-            <div class="col"><select id="selectvalue3" class="state"></select></div>
-          </div><br>
-
-          <div class="row gx-2">
-            <div class="col">Temperature: </div>
-            <div class="col"><span id="value4" class="state"> Value </span></div>
-            <div class="col"><select id="selectvalue4" class="state"></select></div>
-          </div><br> -->
-        </div>
-          <Center><span><button id="buttonsavecard" class="button">SAVE</button></span></Center>
+        <Center><span><button id="buttonsavecard" class="button">SAVE</button></span></Center>
         </div>
       </div>
     </div>
