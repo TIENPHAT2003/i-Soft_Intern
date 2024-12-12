@@ -1,7 +1,7 @@
 
 //global variables
 // var gateway = `ws://192.168.4.1/ws`;
-var gateway = `ws://192.168.13.132/ws`;
+var gateway = `ws://192.168.15.80/ws`;
 var loadcard = 0  ;
 var loading = 0;
 var websocket;
