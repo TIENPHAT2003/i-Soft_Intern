@@ -206,7 +206,7 @@ function initButton() {
   document.getElementById('buttontoggle').addEventListener('click', buttontoggle);
 
   document.getElementById('btnModbus').addEventListener('click', settingmodbus);
-  document.getElementById('btnIo').addEventListener('click', settingio);
+  // document.getElementById('btnIo').addEventListener('click', settingio);
   document.getElementById('btnHome').addEventListener('click', Home);
   document.getElementById('buttonadd').addEventListener('click', AddCard);
   document.getElementById('bntLoadcard').addEventListener('click', loadCard);
@@ -325,7 +325,7 @@ function settingmodbus() {
   
   document.getElementById("btnModbus").style.display = "none";
   document.getElementById("btnHome").style.display = "block";
-  document.getElementById("btnIo").style.display = "block";
+  // document.getElementById("btnIo").style.display = "block";
   document.getElementById("btntable").style.display = "block";
 
 
@@ -346,7 +346,7 @@ function settingio() {
 
   document.getElementById("btnModbus").style.display = "block";
   document.getElementById("btnHome").style.display = "block";
-  document.getElementById("btnIo").style.display = "none";
+  // document.getElementById("btnIo").style.display = "none";
   document.getElementById("btntable").style.display = "block";
 }
 function Home() {
@@ -366,7 +366,7 @@ function Home() {
 
   document.getElementById("btnModbus").style.display = "block";
   document.getElementById("btnHome").style.display = "none";
-  document.getElementById("btnIo").style.display = "block";
+  // document.getElementById("btnIo").style.display = "block";
   document.getElementById("btntable").style.display = "block";
 }
 function TabTableData() {
@@ -385,7 +385,7 @@ function TabTableData() {
 
   document.getElementById("btnModbus").style.display = "block";
   document.getElementById("btnHome").style.display = "block";
-  document.getElementById("btnIo").style.display = "block";
+  // document.getElementById("btnIo").style.display = "block";
   document.getElementById("btntable").style.display = "none";
 }
 function Showfile() {
@@ -404,7 +404,7 @@ function Showfile() {
 
   document.getElementById("btnModbus").style.display = "block";
   document.getElementById("btnHome").style.display = "block";
-  document.getElementById("btnIo").style.display = "block";
+  // document.getElementById("btnIo").style.display = "block";
   document.getElementById("btntable").style.display = "block";
 
 }
